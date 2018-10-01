@@ -1,2 +1,2 @@
-# pj18-elmasriomer
-pj18-elmasriomer created by GitHub Classroom
+# Ömer ELMASRİ
+Ömer Elmasri created by GitHub Classroom
