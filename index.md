@@ -9,4 +9,4 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
 
 ## WEEK 2
 Assignment Week-2  ([Link](https://mef-bda503.github.io/pj18-elmasriomer/Assignment-Week-02)) with copy-paste HTML codes (br/)
-Assignment Week-2  ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/Assigment-Week-002/Assignment-Week-002.html)) with uploading HTML file with creating brach under master file. 
+Assignment Week-2  ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/Assignment-Week-002.html)) with uploading HTML file with creating brach under master file. 
