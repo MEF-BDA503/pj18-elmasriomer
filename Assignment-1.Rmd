@@ -1,0 +1,33 @@
+---
+title: "Assignment-1"
+author: "Omer Elmasri"
+date: "14 Ekim 2018"
+output: html_document
+---
+Assignment: Find Three R Examples about My Work
+
+Ömer ELMASRÝ as chemical engineer specialized in process & product development in the production industry with using Lean 6 Sigma Tools in charge of minimizing product cost and increasing product quality. My interest with big data comes from my experiences during cost optimization, pricing, quality development. I have been influenced by  some big data case studies such as natural disaster cases, traffic management, retail marketing and energy consumption. I believe the future will be driven with big data in order to find new opportunities and improve existing problems. I have planned to learn big-data skills as possible as my best in order to apply them to solve complicated production and logistics problems.
+
+
+Here you may find my watch list and the my summary of UseR-2018 videos  ([Link](https://www.youtube.com/channel/UC_R5smHVXRYGhZYDJsnXTwg/videos)) for the Week 3. 
+
+
+
+Video 0: What is R?
+([Link](https://www.youtube.com/watch?v=XcBLEVknqvY ))
+It explains R istatistical program language.
+
+Video 1: Practical R Workflows
+([Link](https://www.youtube.com/watch?v=HwpKLoxrCPk))
+The video session has focused on repeatibility more than reproducibility. It is aimed to help to the team who work with repeat process. One of the main principle is to rename the documents according to ISO standards to be able to read by machine just like the formats YYYY-MM-DD.It eliminates addtional update the code. The simple way is accordingly to follow creating functions (from snippets), building a file commonly used functions, creating packages, reducing friction, standarsing data, streamlining data (building template) and creating data out of R. It is inspiring for me to understand the solutions for repetitive tasks like in the production industry. 
+
+Video 2: Integrating R into a production data environment
+([Link](https://www.youtube.com/watch?v=SDvFpPCfduk))
+It explains R usage over the fisheries application in the Gulf of Alaska and  Bering Sea. They are collecting data from different size vessels via using camera and human observation in order to control catch limits for the management of diversity. The main principle is followed as sampling desing (sample unit, population, outcomes), catch estimation and R-Markdown reports. It is inspiring for me to see and understand high-level overview of the system architecture, with a focus on our use of R-Cran for both development (e.g., simulation and testing) and production (e.g., statistical features) within our Oracle database. 
+
+Video 3: Looking to clean your data? Learn how to Remove Unwanted Variation with R - Part 1
+([Link](https://www.youtube.com/watch?v=Z9IjfmSRfVU))
+In the chemical production industry, we have a lot of sensor values extracted from database, however there may be lot of variation due to human failure, wrong reading and environmental issues. In order to understand cause-effect of the product quality, we need to clean our data. It is inspiring for me. In the video, it has presented docker app and the subjects such as example data set, ruv framework, ruv package, examples with shiny. The neuropsychopharmacology data set (gender, lab, brain part, genes) is presented. When it was virtualized, it is seen, there is unwanted variation (batch effects). In the ruv (Remove Unwanted Variation) framework, it explains the solution via negative controls and secondary identifying assumptions (replicates); regression methods' comparison, mapping matrix and ruv shiny. 
+
+
+
