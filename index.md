@@ -14,4 +14,4 @@ You can use the [editor on GitHub](https://github.com/MEF-BDA503/pj18-elmasriome
 in progress for better solution... (Note for instructor)
 ##### Presentation ([Link](https://mef-bda503.github.io/pj18-elmasriomer/ODD_retail_sales_2017_11.html)) 
 ##### Excel file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_retail_sales_2017_11.XLSX)) 
-##### RDS file ([Link]()) 
+##### RMD file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/Retail_sales_2017_11.Rmd)) 
