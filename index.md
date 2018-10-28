@@ -12,3 +12,8 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
 ([Link](https://mef-bda503.github.io/pj18-elmasriomer/Assignment-Week-02)) 
 ### Assignment Week-2 Using R-markdown to publish html file (uploading HTML file with creating branch under master file)
 ([Link](https://mef-bda503.github.io/pj18-elmasriomer/Assignment-Week-002)) 
+
+## WEEK 3 (Oct 31, 2018)
+### Assignment Week-3 Using dplyr functions (standardizing & merging data) via ODD (Otomotiv Distribütörleri Derneği) retail sales of Nov.2017 dataset
+in progress for better solution... (Note for instructor)
+ODD Car Sales Assignment ([Link](https://mef-bda503.github.io/pj18-elmasriomer/ODD_retail_sales_2017_11.html)) 
