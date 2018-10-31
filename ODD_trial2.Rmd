@@ -1,0 +1,137 @@
+---
+title: "ODD Sales Assignment"
+author: "Omer Elmasri"
+date: "31.10.2018"
+output: html_document
+---
+## November 2017  Sales Analysis 
+
+
+### Make library active
+```{r message = FALSE}
+library(dplyr)
+library(tidyverse)
+library(scales)
+library(readxl)
+```
+
+## From Raw to Civilized Data
+
+### Find the data
+  First, car sales excel for November 2017 is downloaded from "Otomotiv Distibütörleri Derneði" website. [webSite](http://www.odd.org.tr/web_2837_1/neuralnetwork.aspx?type=36). 
+  File is renamed to "odd_retail_sales_2017_11.xlsx"" and uploaded to github [github link](https://github.com/MEF-BDA503/pj18-elmasriomer) 
+
+### Download Raw Data
+  Below the excel file is downloaded from github to a local data frame (raw_data) and refined for analysis
+```{r}
+tmp<-tempfile(fileext=".xlsx")
+download.file("https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_retail_sales_2017_11.XLSX?raw=true",destfile=tmp,mode="wb")
+raw_data<-readxl::read_excel(tmp,skip=7,col_names=FALSE)
+file.remove(tmp)
+raw_data <- raw_data %>% slice(-c(46,47))
+head(raw_data)
+```
+
+# A tibble: 6 x 10
+  brand_name   auto_dom auto_imp auto_total comm_dom comm_imp comm_total total_dom total_imp total_total
+  <chr>           <dbl>    <dbl>      <dbl>    <dbl>    <dbl>      <dbl>     <dbl>     <dbl>       <dbl>
+1 ALFA ROMEO         NA       53         53       NA       NA          0         0        53          53
+2 ASTON MARTIN       NA        2          2       NA       NA          0         0         2           2
+3 AUDI               NA     3189       3189       NA       NA          0         0      3189        3189
+4 BENTLEY            NA        2          2       NA       NA          0         0         2           2
+5 BMW                NA     4611       4611       NA       NA          0         0      4611        4611
+6 CHERY              NA        0          0       NA       NA          0         0         0           0
+
+
+### Civilize Data
+In order to make easy to read, we have named column names. 
+```{r}
+#column names for raw data
+colnames(raw_data) <- c("brand_name","auto_dom","auto_imp","auto_total","comm_dom","comm_imp","comm_total","total_dom","total_imp","total_total")
+#replace NA values with 0 and add year/month cols
+car_data_nov_17 <- raw_data %>% mutate_if(is.numeric,funs(ifelse(is.na(.),0,.)))%>% mutate(year=2017,month=11)
+print(car_data_nov_17,width=Inf)
+```
+
+# A tibble: 45 x 12
+   brand_name   auto_dom auto_imp auto_total comm_dom comm_imp comm_total total_dom total_imp total_total  year month
+   <chr>           <dbl>    <dbl>      <dbl>    <dbl>    <dbl>      <dbl>     <dbl>     <dbl>       <dbl> <dbl> <dbl>
+ 1 ALFA ROMEO          0       53         53        0        0          0         0        53          53  2017    11
+ 2 ASTON MARTIN        0        2          2        0        0          0         0         2           2  2017    11
+ 3 AUDI                0     3189       3189        0        0          0         0      3189        3189  2017    11
+ 4 BENTLEY             0        2          2        0        0          0         0         2           2  2017    11
+ 5 BMW                 0     4611       4611        0        0          0         0      4611        4611  2017    11
+ 6 CHERY               0        0          0        0        0          0         0         0           0  2017    11
+ 7 CITROEN             0     2017       2017      274      711        985       274      2728        3002  2017    11
+ 8 DACIA               0     4745       4745        0      747        747         0      5492        5492  2017    11
+ 9 DS                  0       42         42        0        0          0         0        42          42  2017    11
+10 FERRARI             0        2          2        0        0          0         0         2           2  2017    11
+# ... with 35 more rows
+
+### Saving Data to Local Documentary
+```{r}
+saveRDS(car_data_nov_17,file="C:/Users/USER/Desktop/Data_Analytics/odd_retail_sales_2017_11.rds")
+```
+
+### Analysis with Data 
+##### Default code to see the both of automobile and commercial vehicle sales over 0 valuewith brandnames as descending in the total sales
+```{r}
+car_data_nov_17 %>% 
+  filter(auto_total > 0 & comm_total > 0) %>%
+  select(brand_name,total_total) %>%
+  arrange(desc(total_total))
+
+```
+
+# A tibble: 12 x 2
+   brand_name    total_total
+   <chr>               <dbl>
+ 1 FIAT                13229
+ 2 RENAULT             12760
+ 3 FORD                12500
+ 4 MERCEDES-BENZ        6933
+ 5 HYUNDAI              5829
+ 6 DACIA                5492
+ 7 NISSAN               4429
+ 8 PEUGEOT              4220
+ 9 CITROEN              3002
+10 KIA                  2789
+11 MITSUBISHI            463
+12 SSANGYONG              77
+
+##### Total sales of both of automobile and commercial vehicles where these are over 0 value and percentage by brand name
+```{r}
+car_data_nov_17 %>% 
+  filter(auto_total > 0 & comm_total > 0) %>%
+  select(brand_name,total_total) %>%
+  arrange(desc(total_total))  %>%
+  mutate(percentage = percent(total_total/sum(total_total)))
+```
+# A tibble: 12 x 3
+   brand_name    total_total percentage
+   <chr>               <dbl> <chr>     
+ 1 FIAT                13229 18.4%     
+ 2 RENAULT             12760 17.8%     
+ 3 FORD                12500 17.4%     
+ 4 MERCEDES-BENZ        6933 9.7%      
+ 5 HYUNDAI              5829 8.1%      
+ 6 DACIA                5492 7.7%      
+ 7 NISSAN               4429 6.2%      
+ 8 PEUGEOT              4220 5.9%      
+ 9 CITROEN              3002 4.2%      
+10 KIA                  2789 3.9%      
+11 MITSUBISHI            463 0.6%      
+12 SSANGYONG              77 0.1%  
+
+##### Also I would like to see a list which total sales is greater than average total sales value in all brands.
+```{r}
+car_data_nov_17 %>% 
+  select(brand_name, auto_total, comm_total, total_total) %>%
+  mutate(average_total=mean(total_total)) %>%  
+  filter(total_total > average_total)  %>%
+  arrange(desc(total_total)) 
+```
+
+
+     
+  
