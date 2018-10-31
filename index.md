@@ -12,9 +12,9 @@ You can use the [editor on GitHub](https://github.com/MEF-BDA503/pj18-elmasriome
 ## WEEK 3 (Oct 31, 2018)
 #### Assignment Week-3 Using dplyr functions (standardizing & merging data) via ODD (Otomotiv Distribütörleri Derneği) retail sales of Nov.2017 dataset
 in progress for better solution... (Note for instructor)
-##### HTML file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/ODD_trial2.html)) 
+##### HTML file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/ODD_trial3.html)) 
 ##### Excel file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_retail_sales_2017_11.XLSX)) 
-##### RMD file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/ODD_trial2.Rmd)) 
+##### RMD file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/ODD_trial3.Rmd)) 
 
 
 
