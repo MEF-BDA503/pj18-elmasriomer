@@ -1,0 +1,89 @@
+---
+title: "ODD Sales Assignment"
+author: "Omer Elmasri"
+date: "31.10.2018"
+output: html_document
+---
+## November 2017  Sales Analysis 
+
+
+### Make library active
+```{r message = FALSE}
+library(dplyr)
+library(tidyverse)
+library(scales)
+library(readxl)
+```
+
+## From Raw to Civilized Data
+
+### Find the data
+  First, car sales excel for November 2017 is downloaded from "Otomotiv Distibütörleri Derneği" website. [webSite](http://www.odd.org.tr/web_2837_1/neuralnetwork.aspx?type=36). 
+  File is renamed to "odd_retail_sales_2017_11.xlsx"" and uploaded to github [github link](https://github.com/MEF-BDA503/pj18-elmasriomer) 
+
+### Download Raw Data
+  Below the excel file is downloaded from github to a local data frame (raw_data) and refined for analysis
+```{r}
+tmp<-tempfile(fileext=".xlsx")
+download.file("https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_retail_sales_2017_11.XLSX?raw=true",destfile=tmp,mode="wb")
+raw_data<-readxl::read_excel(tmp,skip=7,col_names=FALSE)
+file.remove(tmp)
+raw_data <- raw_data %>% slice(-c(46,47))
+head(raw_data)
+```
+
+### Civilize Data
+In order to make easy to read, we have named column names. 
+```{r}
+#column names for raw data
+colnames(raw_data) <- c("brand_name","auto_dom","auto_imp","auto_total","comm_dom","comm_imp","comm_total","total_dom","total_imp","total_total")
+#replace NA values with 0 and add year/month cols
+car_data_nov_17 <- raw_data %>% mutate_if(is.numeric,funs(ifelse(is.na(.),0,.)))%>% mutate(year=2017,month=11)
+print(car_data_nov_17,width=Inf)
+```
+
+### Saving Data to Local Documentary
+```{r}
+saveRDS(car_data_nov_17,file="C:/Users/USER/Documents/Data_Analytics/odd_retail_sales_2017_11.rds")
+```
+
+### Analysis with Data 
+##### Default code to see the both of automobile and commercial vehicle sales over 0 valuewith brandnames as descending in the total sales
+```{r}
+car_data_nov_17 %>% 
+  filter(auto_total > 0 & comm_total > 0) %>%
+  select(brand_name,total_total) %>%
+  arrange(desc(total_total))
+
+```
+
+##### Total sales of both of automobile and commercial vehicles where these are over 0 value and percentage by brand name
+```{r}
+car_data_nov_17 %>% 
+  filter(auto_total > 0 & comm_total > 0) %>%
+  select(brand_name,total_total) %>%
+  arrange(desc(total_total))  %>%
+  mutate(percentage = percent(total_total/sum(total_total))) %>% slice(1:10)
+```
+
+
+##### Now, I would like to see a list which total sales is greater than average total sales value in all brands.
+```{r}
+car_data_nov_17 %>% 
+  select(brand_name, auto_total, comm_total, total_total) %>%
+  mutate(average_total=mean(total_total)) %>%  
+  filter(total_total > average_total)  %>%
+  arrange(desc(total_total)) 
+```
+
+##### Also I would like to see a vehicle list which their brand names start with "M" letter with total of automotive and commercial sales
+
+```{r}
+  filtered_df <- car_data_nov_17 %>% dplyr::filter(substr(brand_name,1,1) == "M")
+  select(filtered_df, brand_name, total_total) %>%
+  arrange(desc(total_total))  %>%
+  print(filtered_df)
+
+```
+
+  
