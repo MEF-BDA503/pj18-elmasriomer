@@ -16,6 +16,6 @@ in progress for better solution... (Note for instructor)
 ##### Excel file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_retail_sales_2017_11.XLSX)) 
 ##### RMD file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/ODD_trial3.Rmd)) 
 
-
-
+## EGM Class Work (Nov 01, 2018)
+####  Group work with EGM Data (Ömer Elmasri, Kadir Kemal, Gökçe Ezeroğlu) ([Link](https://mef-bda503.github.io/pj18-KadirKemal/EGM/Gokce_Omer_Kadir.html)) 
 
