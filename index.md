@@ -18,5 +18,5 @@ in progress for better solution... (Note for instructor)
 ##### RDS file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_retail_sales_2017_11.Rds)) 
 
 ## EGM Class Work (Nov 01, 2018)
-####  Group work with EGM Data (Ömer Elmasri, Kadir Kemal, Gökçe Ezeroğlu) ([Link](https://mef-bda503.github.io/pj18-KadirKemal/EGM/Gokce_Omer_Kadir.html)) 
+#### EGM Group Assignment with using with GGPLOT (Ömer Elmasri, Kadir Kemal, Gökçe Ezeroğlu) ([Link](https://mef-bda503.github.io/pj18-KadirKemal/EGM/Gokce_Omer_Kadir.html)) 
 
