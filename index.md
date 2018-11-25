@@ -19,3 +19,8 @@ RDS file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_
 ## EGM Class Work (Nov 01, 2018)
 #### EGM Group Assignment with using with GGPLOT (Ömer Elmasri, Kadir Kemal, Gökçe Ezeroğlu) ([Link](https://mef-bda503.github.io/pj18-KadirKemal/EGM/Gokce_Omer_Kadir.html)) 
 
+## WEEK 4 (Nov 14, 2018)
+#### ODD Assignment Part2 to collect data and to use shiny and reticulate packages (interactive dashboards)
+RMD file ([Link]()) 
+RDS file ([Link]()) 
+
