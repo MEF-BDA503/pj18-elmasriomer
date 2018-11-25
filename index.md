@@ -21,6 +21,5 @@ RDS file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/odd_
 
 ## WEEK 4 (Nov 14, 2018)
 #### ODD Assignment Part2 to collect data and to use shiny and reticulate packages (interactive dashboards)
-RMD file ([Link]()) 
-RDS file ([Link]()) 
-
+RMD file ([Link](https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/ODD_aggregate_analysis.Rmd)) 
+HTML file ([Link](https://mef-bda503.github.io/pj18-elmasriomer/ODD_aggregate_analysis.html)) 
