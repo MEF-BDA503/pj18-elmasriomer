@@ -1,0 +1,130 @@
+---
+title: "ODD_aggregate"
+author: "Omer Elmasri"
+date: "25 Kasım 2018"
+output: html_document
+---
+
+## Install Package
+In week 2 ODD data have been studied. Now we combine all data in order to have detailed analyses with collected data.
+Here, We need to install required packages.
+
+```{r}
+install.packages("tidyverse", repos = "https://cran.r-project.org")
+install.packages("formattable", repos = "https://cran.r-project.org")
+library(tidyverse)
+library(dplyr)
+library(formattable)
+library(ggplot2)
+library(lubridate)
+```
+
+## Download Raw Data
+Here we get data from github repository with reading and assigning it to a dataframe.
+
+```{r}
+#download from github 
+github_URL <- ("https://github.com/MEF-BDA503/pj18-elmasriomer/blob/master/car_data_aggregate.rds?raw=true")
+all_data<- readRDS(url(github_URL))
+#check rows,columns, also head and tail
+glimpse(all_data)
+head(all_data)
+tail(all_data)
+```
+
+## Analyzing Overall Dataset and Cleaning Data
+```{r}
+control_data <- all_data%>%
+  group_by (brand_name)%>%
+  summarize(count=n())
+#View(control_data) #contol_data is used to see overall
+
+#When we had a quick view to the aggreated data, there are some phrases in brandnames including "ODD.." and "TOPLAM". 
+
+cleaned_data <- all_data %>% filter(! (startsWith(brand_name, "ODD") | startsWith(brand_name, "TOPLAM")))%>%
+  group_by (brand_name)%>%
+  summarize(count=n())
+#View(cleaned_data) #clean_data is used to see the result of filtering
+
+#Also there are two brand name rows referred to unique brandname  but spellled different that is needed to be consolidated (ASTON MARTIN, ASTON MARTİN).
+all_data$brand_name <- str_replace(all_data$brand_name,"ASTON MARTİN","ASTON MARTIN")
+
+control_data_2 <- all_data%>%filter(! (startsWith(brand_name, "ODD") | startsWith(brand_name, "TOPLAM")))%>%
+  group_by (brand_name)%>%
+  summarize(count=n())
+#View(control_data_2) #control_data_2 is used to see the result of both of str_replace and filtering
+
+final_data <- all_data %>% filter(! (startsWith(brand_name, "ODD") | startsWith(brand_name, "TOPLAM"))) #filtering is applied to actual data, re_named as final_data. We will use this. 
+#View(final_data)
+
+```
+
+##  Data Analyze
+```{r}
+#I would like to see the brand with highest car sales overall where both of automobile and commercial vehicle sales over 0. Then I would like to see the trend of commercial cars sales as domestic and import; also commercial car sales as domestic and import.
+
+top_three <- final_data %>% 
+  filter(auto_total > 0 & comm_total > 0) %>%
+  select(brand_name, auto_dom, auto_imp, comm_dom, comm_imp, month, year, total_total) %>%
+  group_by (brand_name)%>%
+  summarize(total_by_brand = sum(total_total))%>%
+  arrange(desc(total_by_brand))%>%
+  slice(1:3)
+#View(top_three)
+#The highest car sales comes from Renault. Let's see the trends commercial cars sales as domestic and import; also commercial car sales as domestic and import.
+
+```
+
+```{r}
+#View(final_data)
+sales_monthly <- final_data %>% 
+              group_by(year, month)   %>% 
+              summarise(total_sales=sum(total_total), total_import=sum(total_imp), total_domestic=sum(total_dom),total_automobil=sum(auto_total), total_commercial=sum(comm_total)) %>%
+              arrange(year, month)   %>% slice(1:12)
+
+sales_monthly$Date <- zoo::as.yearmon(paste(sales_monthly$year,sales_monthly$month), "%Y %m")
+sales_monthly$DateFormated <- format(sales_monthly$Date,"%Y-%m")
+#View(sales_monthly)
+```
+
+```{r}
+sales_monthly_Renault <- final_data %>% 
+              filter(brand_name=="RENAULT") %>% 
+              group_by(year, month)   %>% 
+              summarise(total_sales=sum(total_total), total_import=sum(total_imp), total_domestic=sum(total_dom),total_automobil=sum(auto_total), total_commercial=sum(comm_total), brand_name) %>%
+              arrange(year, month)   %>% slice(1:12)
+
+sales_monthly_Renault$Date <- zoo::as.yearmon(paste(sales_monthly$year,sales_monthly$month), "%Y %m")
+sales_monthly_Renault$DateFormated <- format(sales_monthly$Date,"%Y-%m")
+View(sales_monthly_Renault)
+```
+
+
+```{r}
+sales_monthly_Renault %>% 
+                  ggplot(aes(x = DateFormated, y = total_sales, group=1)) + 
+                  #ggtitle("Total Sales trend of Renault") + 
+                  geom_line() + 
+                  geom_point() +
+                  theme(legend.position = "none", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.0, size = 10)) +
+                  scale_linetype_discrete()+
+                  ggtitle("Total Sales Trend of Renault")
+```
+
+```{r}
+#New solutions will be added
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
